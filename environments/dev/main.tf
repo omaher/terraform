@@ -1,14 +1,3 @@
-terraform {
-  backend "s3" {
-    bucket = "ecommerce-tfstatefile"
-    key = "ecommerce-tfstatefile/terraform.tfstate"
-    region = "us-east-1"
-    encrypt = true
-    dynamodb_table = "tfstatefile"
-    acl = "bucket-owner-full-control"
-  }
-}
-
 module "network" {
   source                     = "C:/Users/HP/OneDrive/Desktop/terraform/modules/network"
   AWS_AZ_1                   = var.AWS_AZ_1
