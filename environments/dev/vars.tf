@@ -11,6 +11,10 @@ variable "AWS_SECRET_KEY" {
   type = string
 }
 
+variable "WORKSPACE_DIR" {
+  type = string
+}
+
 variable "AWS_AZ_1" {
   type    = string
   default = "us-east-1a"

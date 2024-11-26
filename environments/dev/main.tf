@@ -1,5 +1,5 @@
 module "network" {
-  source                     = "${env.WORKSPACE}/modules/network"
+  source                     = "${var.WORKSPACE_DIR}/modules/network"
   AWS_AZ_1                   = var.AWS_AZ_1
   AWS_AZ_2                   = var.AWS_AZ_2
   vpc-cidr_block             = var.vpc-cidr_block
@@ -10,7 +10,7 @@ module "network" {
 }
 
 module "compute" {
-  source            = "${env.WORKSPACE}/modules/compute"
+  source            = "${var.WORKSPACE_DIR}/modules/compute"
   AWS_REGION        = var.AWS_REGION
   AMIS              = var.AMIS
   ecommerce_vpc-id  = module.network.ecommerce_vpc-id
