@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        terraform 'Terraform-1.9.8' // Match the name from Global Tool Configuration
+    }
+
     parameters {
         string(name: 'BRANCH', defaultValue: 'main', description: 'Git branch to checkout') // User-provided branch
     }
