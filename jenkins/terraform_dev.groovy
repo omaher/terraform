@@ -87,7 +87,7 @@ pipeline {
         stage ('Terraform Apoly') {
             when {
                     expression {
-                        currentBuild.Result == null || currentBuild.Result == 'SUCCESS'
+                        currentBuild.result == null || currentBuild.result == 'SUCCESS'
                     }
                 }
             steps {
