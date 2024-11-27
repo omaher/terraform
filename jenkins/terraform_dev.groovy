@@ -55,20 +55,23 @@ pipeline {
         }
         stage ('Terraform Init') {
             steps {
-                sh '''
-                cd $WORKSPACE/environments/dev/
-                '''
-                sh 'terraform init'
+                dir("$WORKSPACE/environments/dev/") {
+                    sh 'terraform init'
+                }
             }
         }
         stage ('Terraform Validate') {
             steps {
-                sh 'terraform validate'
+                dir("$WORKSPACE/environments/dev/") {
+                    sh 'terraform validate'
+                }
             }
         }
         stage ('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                dir("$WORKSPACE/environments/dev/") {
+                    sh 'terraform plan'
+                }
             }
         }
         stage('Confirmation to Proceed') {
@@ -88,7 +91,9 @@ pipeline {
                     }
                 }
             steps {
-                sh 'terraform apply -auto-approve'
+                dir("$WORKSPACE/environments/dev/") {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
