@@ -3,10 +3,6 @@ variable "AWS_REGION" {
   default = "us-east-1"
 }
 
-variable "WORKSPACE_DIR" {
-  type = string
-}
-
 variable "AWS_AZ_1" {
   type    = string
   default = "us-east-1a"
