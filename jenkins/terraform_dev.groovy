@@ -34,6 +34,25 @@ pipeline {
                 }
             }
         }
+        stage('Setup AWS CLI') {
+            steps {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding', 
+                    credentialsId: 'aws_credentials' // Use the ID of your Jenkins credentials
+                ]]) {
+                    sh '''
+                    # Configure AWS CLI with credentials from Jenkins
+                    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+                    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+                    aws configure set default.region $AWS_REGION
+                    aws configure set output json
+
+                    # Test AWS CLI configuration
+                    aws sts get-caller-identity
+                    '''
+                }
+            }
+        }
         stage ('Terraform Init') {
             steps {
                 sh '''
